@@ -2,6 +2,16 @@
 
 This package allows you to easily manage `.env` file entries in a type-safe manner.
 
+## Installation
+
+```bash
+npm install @tailflow/dotenv
+
+# or
+
+yarn add @tailflow/dotenv
+```
+
 ## Usage
 
 ```ts
