@@ -89,6 +89,31 @@ describe('DotEnv tests', () => {
         expect(updatedEntry?.value).toBe('updated');
     });
 
+    test('setting value and comment of a non-existing entry', () => {
+        const dotEnv = new DotEnv(`keyA=a`);
+
+        const addedEntry = dotEnv.set('NON_EXISTING', 'test-value', 'test-comment');
+
+        const entry = dotEnv.get('NON_EXISTING');
+
+        expect(entry?.value).toBe('test-value');
+        expect(addedEntry?.value).toBe('test-value');
+
+        expect(entry?.comment).toBe('test-comment');
+        expect(addedEntry?.comment).toBe('test-comment');
+    });
+
+    test('setting entry comment', () => {
+        const dotEnv = new DotEnv(`keyA=a`);
+
+        const updatedEntry = dotEnv.setComment('keyA', 'example comment');
+
+        const entry = dotEnv.get('keyA');
+
+        expect(entry?.comment).toBe('example comment');
+        expect(updatedEntry?.comment).toBe('example comment');
+    });
+
     test('removing an entry', () => {
         const dotEnv = new DotEnv(`keyA=a`);
 

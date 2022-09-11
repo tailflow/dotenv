@@ -1,9 +1,8 @@
 import {DotEnvEntryValueType} from "./dotEnvEntryValueType";
 
 export class DotEnvEntry<T = DotEnvEntryValueType> {
-    public key?: string;
-    public value?: T;
-    public comment?: string;
+    constructor(public key?: string, public value?: T, public comment?: string) {
+    }
 
     public toString(): string {
         let formattedEntry = '';

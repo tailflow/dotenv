@@ -30,14 +30,30 @@ export class DotEnv {
         return this.entries.find((entry) => entry.key === key) as DotEnvEntry<T>;
     }
 
-    public set<T extends DotEnvEntryValueType>(key: string, value: DotEnvEntryValueType): DotEnvEntry<T> {
+    public set<T extends DotEnvEntryValueType>(key: string, value: T, comment?: string): DotEnvEntry<T> {
+        let entryIndex = this.entries.findIndex((entry) => entry.key === key);
+
+        if (entryIndex < 0) {
+            const entry = new DotEnvEntry(key, value, comment);
+
+            this.entries.push(entry);
+
+            return entry;
+        } else {
+            this.entries[entryIndex].value = value;
+
+            return this.entries[entryIndex] as DotEnvEntry<T>;
+        }
+    }
+
+    public setComment<T extends DotEnvEntryValueType>(key: string, comment: string | undefined): DotEnvEntry<T> {
         let entryIndex = this.entries.findIndex((entry) => entry.key === key);
 
         if (entryIndex < 0) {
             throw new Error(`Unable to find entry with the given key: ${key}`);
         }
 
-        this.entries[entryIndex].value = value;
+        this.entries[entryIndex].comment = comment;
 
         return this.entries[entryIndex] as DotEnvEntry<T>;
     }
