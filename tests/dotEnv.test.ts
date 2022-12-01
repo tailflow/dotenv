@@ -114,6 +114,18 @@ describe('DotEnv tests', () => {
         expect(updatedEntry?.comment).toBe('example comment');
     });
 
+    test('merging entries', () => {
+        const dotEnvA = new DotEnv(`keyA=a`);
+        const dotEnvB = new DotEnv(`keyA=test\nkeyB=b # some comment`);
+
+        dotEnvA.merge(dotEnvB);
+
+        expect(dotEnvA.get('keyA')?.value).toBe('test');
+
+        expect(dotEnvA.get('keyB')?.value).toBe('b');
+        expect(dotEnvA.get('keyB')?.comment).toBe('some comment');
+    });
+
     test('removing an entry', () => {
         const dotEnv = new DotEnv(`keyA=a`);
 

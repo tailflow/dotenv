@@ -1,10 +1,8 @@
 {
   "name": "@tailflow/dotenv",
   "description": "A simple package for managing .env file entries",
-  "version": "1.0.0",
-  "files": [
-    "build"
-  ],
+  "version": "1.2.1",
+  "files": ["*"],
   "author": "Aleksei Zarubin alex@zarubin.co",
   "repository": {
     "type": "git",
@@ -12,10 +10,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepare": "npm run build",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b --watch tsconfig.json",
-    "test": "jest"
+    "test": "jest",
+    "publish": "npm run build && cp package.json ./build/package.json && cd build && npm publish"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",

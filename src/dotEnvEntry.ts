@@ -1,7 +1,7 @@
 import {DotEnvEntryValueType} from "./dotEnvEntryValueType";
 
 export class DotEnvEntry<T = DotEnvEntryValueType> {
-    constructor(public key?: string, public value?: T, public comment?: string) {
+    constructor(public key?: string, public value?: T | null, public comment?: string) {
     }
 
     public toString(): string {
@@ -18,7 +18,7 @@ export class DotEnvEntry<T = DotEnvEntryValueType> {
         }
 
         if (this.comment) {
-            formattedEntry += ` #${this.comment}`;
+            formattedEntry += ` # ${this.comment}`;
         }
 
         return formattedEntry;
