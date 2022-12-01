@@ -8,10 +8,10 @@ export class DotEnvEntry<T = DotEnvEntryValueType> {
         let formattedEntry = '';
 
         if (this.key) {
-            let formattedValue = '';
+            let formattedValue = this.value ? String(this.value) : '';
 
-            if (typeof this.value === 'string') {
-                formattedValue = /[\s"'=$.@]/.test(this.value) ? JSON.stringify(this.value) : this.value;
+            if (/[\s"'=$.@]/.test(formattedValue)) {
+                formattedValue = JSON.stringify(formattedValue);
             }
 
             formattedEntry = `${this.key}=${formattedValue}`;
