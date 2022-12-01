@@ -14,12 +14,12 @@ export class DotEnv {
 
                     entry.key = rawEntryKeyValue[0].trim();
                     entry.value = rawEntryKeyValue[1].match(/("?.*"?(?=#))|"?.*"?/)?.shift()?.trim().replaceAll(/^"+|"+$/g, '') ?? null;
-                    entry.comment = rawEntryKeyValue[1].match(/#(.*$)/)?.shift()?.trim().replace(/^#+/, '').trimLeft();
+                    entry.comment = rawEntryKeyValue[1].match(/#(.*$)/)?.shift()?.trim().replace(/^#+/, '').trimStart();
                 } else {
                     entry.comment = rawEntry; // empty lines
                 }
             } else {
-                entry.comment = rawEntry.trim().replace(/^#+/, '');
+                entry.comment = rawEntry.trim().replace(/^#+/, '').trimStart();
             }
 
             return entry;

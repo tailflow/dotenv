@@ -1,7 +1,7 @@
 {
   "name": "@tailflow/dotenv",
   "description": "A simple package for managing .env file entries",
-  "version": "1.2.1",
+  "version": "1.2.4",
   "files": ["*"],
   "author": "Aleksei Zarubin alex@zarubin.co",
   "repository": {

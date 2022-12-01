@@ -71,6 +71,16 @@ describe('DotEnv tests', () => {
         expect(keyAEntry.comment).toBe('example comment');
     });
 
+    test('parsing entry that is a comment in itself and trimming left spaces', () => {
+        const dotEnv = new DotEnv(`# example comment`);
+
+        const keyAEntry = dotEnv.all().shift()!;
+
+        expect(keyAEntry.key).toBeUndefined();
+        expect(keyAEntry.value).toBeUndefined();
+        expect(keyAEntry.comment).toBe('example comment');
+    });
+
     test('parsing entries with empty lines in between', () => {
         const dotEnv = new DotEnv(`keyA=a\n\nkeyB=b`);
 
